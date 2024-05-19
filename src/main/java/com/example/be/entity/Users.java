@@ -11,7 +11,7 @@ public class Users {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "class_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "class_fk"))
+    @JoinColumn(name = "class_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "class_users_fk"))
     private Classes classes;
 
     private String userName;

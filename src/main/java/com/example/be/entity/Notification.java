@@ -12,11 +12,11 @@ public class Notification {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "teacher_fk"))
+    @JoinColumn(name = "teacher_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "teacher_not_fk"))
     private Users teacher;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_fk"))
+    @JoinColumn(name = "student_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_not_fk"))
     private Users student;
 
     @Column(name = "title")

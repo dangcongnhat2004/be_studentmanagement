@@ -12,7 +12,7 @@ public class Attendance {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_fk"))
+    @JoinColumn(name = "student_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_attendance_fk"))
     private Users student;
 
     @Column(name = "attendance_date")

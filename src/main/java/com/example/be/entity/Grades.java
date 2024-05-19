@@ -12,12 +12,12 @@ public class Grades {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_fk"))
+    @JoinColumn(name = "student_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_grades_fk"))
     private Users student;
 
 
     @ManyToOne
-    @JoinColumn(name = "course_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "course_fk"))
+    @JoinColumn(name = "course_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "course_grades_fk"))
     private Course course;
 
     @Column(name = "frequent_score1", precision = 5, scale = 2)

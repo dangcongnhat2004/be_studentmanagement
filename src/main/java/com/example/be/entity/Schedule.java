@@ -21,7 +21,7 @@ public class Schedule {
     private String endTime;
 
     @ManyToOne
-    @JoinColumn(name = "course_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "courseSchedulefk"))
+    @JoinColumn(name = "course_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "course_schedule_fk"))
     private Course course;
 
     public enum DayOfWeek {
