@@ -1,8 +1,15 @@
 package com.example.be.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 @Entity
+@Getter
+@Setter
+
 @Table(name = "users")
 
 public class Users {
@@ -22,6 +29,7 @@ public class Users {
 
     private String schoolname;
 
+    @JsonIgnore
     private String passwordhash;
 
     @Enumerated(EnumType.STRING)
@@ -46,75 +54,5 @@ public class Users {
         PRESENT
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Classes getClasses() {
-        return classes;
-    }
-
-    public void setClasses(Classes classes) {
-        this.classes = classes;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getSchoolname() {
-        return schoolname;
-    }
-
-    public void setSchoolname(String schoolname) {
-        this.schoolname = schoolname;
-    }
-
-    public String getPasswordhash() {
-        return passwordhash;
-    }
-
-    public void setPasswordhash(String passwordhash) {
-        this.passwordhash = passwordhash;
-    }
-
-    public Role getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Role roles) {
-        this.roles = roles;
-    }
-
-    public StatusNow getStatusNow() {
-        return statusNow;
-    }
-
-    public void setStatusNow(StatusNow statusNow) {
-        this.statusNow = statusNow;
-    }
 }

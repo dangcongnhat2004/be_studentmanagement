@@ -13,4 +13,8 @@ public class Course {
     @ManyToOne
     @JoinColumn(name = "teacher_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "teacher_course_fk"))
     private Users teacher;
+
+    @ManyToOne
+    @JoinColumn(name = "student_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_course_fk"))
+    private Users student;
 }
