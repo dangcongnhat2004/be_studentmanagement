@@ -1,7 +1,8 @@
-package com.twd.SpringSecurityJWT.controller;
+package com.example.be.controller;
 
-import com.twd.SpringSecurityJWT.dto.ReqRes;
-import com.twd.SpringSecurityJWT.service.AuthService;
+
+import com.example.be.Dto.ReqRes;
+import com.example.be.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

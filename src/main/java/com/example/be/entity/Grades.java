@@ -1,10 +1,16 @@
 package com.example.be.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Entity
+@Getter
+@Setter
+@Data
 @Table(name = "grades")
 public class Grades {
 
@@ -13,9 +19,12 @@ public class Grades {
     private int id;
     @ManyToOne
     @JoinColumn(name = "student_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_grades_fk"))
+
     private Users student;
 
-
+    @ManyToOne
+    @JoinColumn(name = "scholatic_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "scholatic_grades_fk"))
+    private Scholastic scholastic;
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "course_grades_fk"))
     private Course course;

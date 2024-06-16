@@ -1,8 +1,6 @@
-package com.twd.SpringSecurityJWT.controller;
+package com.example.be.controller;
 
-import com.twd.SpringSecurityJWT.dto.ReqRes;
-import com.twd.SpringSecurityJWT.entity.Product;
-import com.twd.SpringSecurityJWT.repository.ProductRepo;
+import com.example.be.Dto.ReqRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -14,21 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AdminUsers {
-
-    @Autowired
-    private ProductRepo productRepo;
-
-    @GetMapping("/public/product")
-    public ResponseEntity<Object> getAllProducts(){
-        return ResponseEntity.ok(productRepo.findAll());
-    }
-
-    @PostMapping("/admin/saveproduct")
-    public ResponseEntity<Object> signUp(@RequestBody ReqRes productRequest){
-        Product productToSave = new Product();
-        productToSave.setName(productRequest.getName());
-        return ResponseEntity.ok(productRepo.save(productToSave));
-    }
 
 
     @GetMapping("/user/alone")

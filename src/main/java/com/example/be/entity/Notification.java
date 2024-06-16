@@ -1,10 +1,16 @@
 package com.example.be.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
 @Entity
+@Getter
+@Setter
+@Data
 @Table(name = "notifications")
 public class Notification {
     @Id

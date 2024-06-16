@@ -1,6 +1,6 @@
-package com.twd.SpringSecurityJWT.config;
+package com.example.be.config;
 
-import com.twd.SpringSecurityJWT.service.OurUserDetailsService;
+import com.example.be.service.OurUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -33,12 +34,18 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request -> request.requestMatchers("/auth/**", "/public/**").permitAll()
                         .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers("/user/**").hasAnyAuthority("USER")
+                        .requestMatchers("/student/**").hasAnyAuthority("STUDENT")
+                        .requestMatchers("/teacher/**").hasAnyAuthority("TEACHER")
                         .requestMatchers("/adminuser/**").hasAnyAuthority("USER", "ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider()).addFilterBefore(
-                        jwtAuthFIlter, UsernamePasswordAuthenticationFilter.class
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtAuthFIlter, UsernamePasswordAuthenticationFilter.class)
+                .logout(logout -> logout
+                        .logoutUrl("/logout") // Đường dẫn để xử lý yêu cầu đăng xuất
+                        .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()) // Xử lý thành công đăng xuất
+                        .deleteCookies("JSESSIONID") // Xóa cookie phiên làm việc
+                        .invalidateHttpSession(true) // Vô hiệu hóa phiên làm việc
                 );
         return httpSecurity.build();
     }

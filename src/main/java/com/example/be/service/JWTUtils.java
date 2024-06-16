@@ -1,4 +1,4 @@
-package com.twd.SpringSecurityJWT.service;
+package com.example.be.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

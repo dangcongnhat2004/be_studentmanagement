@@ -1,8 +1,9 @@
-package com.twd.SpringSecurityJWT.service;
+package com.example.be.service;
 
-import com.twd.SpringSecurityJWT.dto.ReqRes;
-import com.twd.SpringSecurityJWT.entity.OurUsers;
-import com.twd.SpringSecurityJWT.repository.OurUserRepo;
+
+import com.example.be.Dto.ReqRes;
+import com.example.be.entity.Users;
+import com.example.be.repository.OurUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,11 +27,11 @@ public class AuthService {
     public ReqRes signUp(ReqRes registrationRequest){
         ReqRes resp = new ReqRes();
         try {
-            OurUsers ourUsers = new OurUsers();
+            Users ourUsers = new Users();
             ourUsers.setEmail(registrationRequest.getEmail());
             ourUsers.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
-            ourUsers.setRole(registrationRequest.getRole());
-            OurUsers ourUserResult = ourUserRepo.save(ourUsers);
+            ourUsers.setRoles(Users.Role.valueOf(registrationRequest.getRole()));
+            Users ourUserResult = ourUserRepo.save(ourUsers);
             if (ourUserResult != null && ourUserResult.getId()>0) {
                 resp.setOurUsers(ourUserResult);
                 resp.setMessage("User Saved Successfully");
@@ -67,7 +68,7 @@ public class AuthService {
     public ReqRes refreshToken(ReqRes refreshTokenReqiest){
         ReqRes response = new ReqRes();
         String ourEmail = jwtUtils.extractUsername(refreshTokenReqiest.getToken());
-        OurUsers users = ourUserRepo.findByEmail(ourEmail).orElseThrow();
+        Users users = ourUserRepo.findByEmail(ourEmail).orElseThrow();
         if (jwtUtils.isTokenValid(refreshTokenReqiest.getToken(), users)) {
             var jwt = jwtUtils.generateToken(users);
             response.setStatusCode(200);

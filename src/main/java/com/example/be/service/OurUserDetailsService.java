@@ -1,6 +1,6 @@
-package com.twd.SpringSecurityJWT.service;
+package com.example.be.service;
 
-import com.twd.SpringSecurityJWT.repository.OurUserRepo;
+import com.example.be.repository.OurUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
